@@ -26,6 +26,7 @@
       width: 100%;
       height: 300px;
       margin: 0px;
+      padding: 0px;
   }
   .carousel-caption {
   padding :5%;
@@ -58,18 +59,15 @@
 
 .knowMoreText{
   position:absolute;
-  right: 0;
-  left : 95%;
-
+  right: 15%;
  }
-
- @media (min-width: 1024px){
+@media (min-width: 1024px){
   .carousel-caption {
    width: 50%;
   }
 
  .carousel-indicators {
-  right: -5%;
+  right: 0;
   left: auto;
  }
 
@@ -87,15 +85,15 @@
 
  }
 
+
 </style>
 <c:if test="${fn:length(flashinfo.lesInfos) gt 0}">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
-		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		<li data-target="#myCarousel" data-slide-to="1"></li>
-		<li data-target="#myCarousel" data-slide-to="2"></li>
-		<li data-target="#myCarousel" data-slide-to="3"></li>
+	<c:forEach var="entry" items="${flashinfo.lesInfos}">
+		<li data-target="#myCarousel" data-slide-to="${entry.rowNumber}" class="${entry.active}"></li>
+		</c:forEach>
 	</ol>
 	<div class="carousel-inner" role="listbox">
 		<c:forEach var="entry" items="${flashinfo.lesInfos}">

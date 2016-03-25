@@ -12,7 +12,7 @@ public class EtablissementServiceImpl implements IEtablissementService {
 	private IUserService userService;
 	@Override
 	public FlashInfoList retrieveInfos(String escouai) {
-		if (escouai.equals(null) || escouai.equals("") || escouai.equals("guest")){
+		if (escouai==null || escouai.equals("") || escouai.equals("guest")){
 			return this.userService.retrieveGuestFlashInfo();
 		}else{
 			return this.userService.retrieveEtabInfos(escouai);

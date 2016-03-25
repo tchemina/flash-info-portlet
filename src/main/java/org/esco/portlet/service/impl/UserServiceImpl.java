@@ -60,8 +60,16 @@ public class UserServiceImpl implements IUserService {
 			logger.error("IOException parsing json object :" +e.getMessage());
 		}
 		JsonParser parser = new JsonParser();
-		JsonElement element = parser.parse(json);
-		if (element.isJsonObject()) {
+		JsonElement element = null;
+		try {
+			element = parser.parse(json);
+		} catch (NullPointerException e) {
+			logger.error("NullPointerException parsing JSON Element at  :"+url+" with message : " +e.getMessage());
+		} catch(Exception e){
+			logger.error("Exception parsing JSON Element at  :"+url+" with message : " +e.getMessage());
+		}
+		
+		if (element != null && element.isJsonObject()) {
 		    JsonObject flashinfos = element.getAsJsonObject();
 		    JsonObject rootflashinfos = flashinfos.getAsJsonObject("flashinfos");
 		    JsonArray datasets = rootflashinfos.getAsJsonArray("flashinfos");
@@ -75,9 +83,8 @@ public class UserServiceImpl implements IUserService {
 		        String title = dataset.get("title").getAsString();
 		        String text = dataset.get("text").getAsString();
 		        String kml = dataset.get("knowMoreLink").getAsString();
-		        // TODO une alt pour les liens d'image
-		        String alt = "image"+i;
-		        FlashInfo info = new FlashInfo(imgL, title, text, kml, alt, active);
+		        String alt = title;
+		        FlashInfo info = new FlashInfo(imgL, title, text, kml, alt, active, i);
 		        flL.add(info);
 		    }
 		}

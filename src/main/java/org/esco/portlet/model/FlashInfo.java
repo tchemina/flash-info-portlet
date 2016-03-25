@@ -8,14 +8,16 @@ public class FlashInfo {
 	private String knowMoreLink;
 	private String imgAlt;
 	private String active;
+	private int rowNumber; 
 	
-	public FlashInfo(String imgL, String title, String text, String kmL, String alt, String active){
+	public FlashInfo(String imgL, String title, String text, String kmL, String alt, String active, int rn){
 		this.imgLink = imgL;
 		this.title = title;
 		this.text = text;
 		this.knowMoreLink = kmL;
 		this.setImgAlt(alt);
 		this.setActive(active);
+		this.setRowNumber(rn);
 	}
 	public String getImgLink() {
 		return imgLink;
@@ -52,5 +54,12 @@ public class FlashInfo {
 	}
 	public void setActive(String active) {
 		this.active = active;
+	}
+
+	public int getRowNumber() {
+		return rowNumber;
+	}
+	public void setRowNumber(int rowNumber) {
+		this.rowNumber = rowNumber;
 	}
 }

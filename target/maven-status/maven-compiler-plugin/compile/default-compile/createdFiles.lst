@@ -1,0 +1,9 @@
+org/esco/portlet/model/FlashInfoList.class
+org/esco/portlet/model/FlashInfo.class
+org/esco/portlet/service/IUserService.class
+org/esco/portlet/service/IEtablissementService.class
+org/esco/portlet/mvc/portlet/EditController.class
+org/esco/portlet/service/impl/EtablissementServiceImpl.class
+org/esco/portlet/mvc/portlet/MainController.class
+org/esco/portlet/mvc/portlet/HelpController.class
+org/esco/portlet/service/impl/UserServiceImpl.class
