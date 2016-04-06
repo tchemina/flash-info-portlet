@@ -19,105 +19,45 @@
 
 --%>
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp" />
-
-<style>
-.carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 100%;
-      height: 300px;
-      margin: 0px;
-      padding: 0px;
-  }
-  .carousel-caption {
-  padding :5%;
-  padding-top: 1%;
-  text-align: left;
-  overflow: ellipsis;
-  top: 0;
-  right:0;
-  left: auto;
-  bottom: auto;
-  height:100%;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #000000;
-  border: 1px solid black;
-  opacity: 0.6;
-  filter: alpha(opacity=60); /* For IE8 and earlier */
-  }
-
-  .carousel-caption > p {
-/*  display: block;*/
-  display: -webkit-box;
-  height: 100px;
-  max-width : 90%;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.knowMoreText{
-  position:absolute;
-  right: 15%;
- }
-@media (min-width: 1024px){
-  .carousel-caption {
-   width: 50%;
-  }
-
- .carousel-indicators {
-  right: 0;
-  left: auto;
- }
-
-
-  }
- @media (max-width: 800px) {
-  .carousel-caption {
-        width: 100%;
-  }
- .carousel-indicators {
-  right: 0;
-  left: 0;
- }
-
-
- }
-
-
-</style>
+<rs:aggregatedResources path="skin.xml" />
+<%@include file="/WEB-INF/jsp/scripts.jsp"%>
 <c:if test="${fn:length(flashinfo.lesInfos) gt 0}">
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	<!-- Indicators -->
-	<ol class="carousel-indicators">
-	<c:forEach var="entry" items="${flashinfo.lesInfos}">
-		<li data-target="#myCarousel" data-slide-to="${entry.rowNumber}" class="${entry.active}"></li>
-		</c:forEach>
-	</ol>
-	<div class="carousel-inner" role="listbox">
-		<c:forEach var="entry" items="${flashinfo.lesInfos}">
-			<!-- Wrapper for slides first entry active-->
-			<div class="item ${entry.active}">
-				<img src="${entry.imgLink}" alt="${entry.imgAlt}">
-				<div class="carousel-caption car-des">
-					<h3>${entry.title}</h3>
-					<p>${entry.text}</p>
-					<a  href="${entry.knowMoreLink}"> <span class="knowMoreText"><spring:message
-								code="portlet.knowmore" /></span>
-					</a>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<c:if test="${fn:length(flashinfo.lesInfos) gt 1}">
+		<ol class="carousel-indicators">
+			<c:forEach var="entry" items="${flashinfo.lesInfos}">
+				<li data-target="#myCarousel" data-slide-to="${entry.rowNumber}"
+					class="${entry.active}"></li>
+			</c:forEach>
+		</ol>
+		</c:if>
+		<div class="carousel-inner" role="listbox">
+			<c:forEach var="entry" items="${flashinfo.lesInfos}">
+				<!-- Wrapper for slides first entry active-->
+				<div class="item ${entry.active}">
+					<img class='carousel-image${entry.rowNumber}' src="${entry.imgLink}"
+						alt="${entry.imgAlt}">
+					<div class="carousel-caption">
+						<h3 class="carousel-text${entry.rowNumber}">${entry.title}</h3>
+						<p class="carousel-text${entry.rowNumber}">${entry.text}</p>
+						<a href="${entry.knowMoreLink}"> <span class="knowMoreText"><spring:message
+									code="portlet.knowmore" /></span>
+						</a>
+					</div>
 				</div>
-			</div>
-		</c:forEach>
+			</c:forEach>
+		</div>
+		<!-- Left and right controls -->
+		<c:if test="${fn:length(flashinfo.lesInfos) gt 1}">
+		<a class="left carousel-control" href="#myCarousel" role="button"
+			data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
+			aria-hidden="true"></span> <span class="sr-only">Previous</span>
+		</a> <a class="right carousel-control" href="#myCarousel" role="button"
+			data-slide="next"> <span
+			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+		</c:if>
 	</div>
-
-	<!-- Left and right controls -->
-	<a class="left carousel-control" href="#myCarousel" role="button"
-		data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
-		aria-hidden="true"></span> <span class="sr-only">Previous</span>
-	</a> <a class="right carousel-control" href="#myCarousel" role="button"
-		data-slide="next"> <span class="glyphicon glyphicon-chevron-right"
-		aria-hidden="true"></span> <span class="sr-only">Next</span>
-	</a>
-</div>
 </c:if>

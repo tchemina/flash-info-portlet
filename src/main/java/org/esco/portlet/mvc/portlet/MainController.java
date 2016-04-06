@@ -61,15 +61,10 @@ public class MainController {
         @SuppressWarnings("unchecked")
         final Map<String,String> userInfo = (Map<String,String>) request.
                 getAttribute(PortletRequest.USER_INFO);
-       
-        mav.addObject("username", request.getRemoteUser());
         
         String escouai = userInfo.get("ESCOUAI");
         FlashInfoList flashInfos = this.etablissementService.retrieveInfos(escouai);
         mav.addObject("flashinfo", flashInfos);       
-        mav.addObject("displayName", userInfo.get("displayName"));
-        mav.addObject("emailAddress", userInfo.get("mail"));
-        mav.addObject("escouai", userInfo.get("ESCOUAI"));
 
         if(logger.isDebugEnabled()) {
             logger.debug("Rendering main view");

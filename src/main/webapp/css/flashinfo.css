@@ -1,0 +1,79 @@
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	margin: 0px;
+	padding: 0px;
+	height: 300px;
+}
+
+.carousel-caption {
+	z-index: 0;
+	padding: 5%;
+	padding-top: 1%;
+	text-align: left;
+	top: 0;
+	right: 0;
+	left: auto;
+	bottom: auto;
+	height: 100%;
+	width: 50%;
+	opacity: 0.9;
+	filter: alpha(opacity = 90); /* For IE8 and earlier */
+}
+
+.carousel-caption>p {
+	display: block;
+	max-width: 80%;
+	font-size: 1em;
+	text-decoration: none;
+	text-shadow: none;
+}
+
+.carousel-caption>h3 {
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: 2em;
+	text-overflow:ellipsis;
+}
+
+.knowMoreText {
+	position: absolute;
+	right: 30%;
+	left: auto;
+	z-index: 5 !important;
+	font-weight:bold;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media ( max-width : 768px) {
+	.carousel-caption {
+		width: 100%;
+	}
+	.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+		width: 100%;
+	}
+}
+/* Medium devices (desktops, 992px and up) */
+@media ( max-width : 992px) {
+	.carousel-caption {
+		width: 100%;
+	}
+	.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+		width: 100%;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media ( min-width : 1024px) {
+	.carousel-caption {
+		width: 50%;
+	}
+	.carousel-indicators {
+		right: 0;
+		left: auto;
+	}
+	.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+		width: 50%;
+	}
+}
