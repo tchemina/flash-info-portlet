@@ -28,6 +28,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.esco.portlet.model.FlashInfoList;
 import org.esco.portlet.service.IEtablissementService;
+import org.esco.portlet.service.PortletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +49,7 @@ public class MainController {
     @Autowired
 	private IEtablissementService etablissementService;
     
-    
+    @SuppressWarnings("unchecked")
     @RenderMapping
     public ModelAndView showMainView(
         final RenderRequest request, final RenderResponse response) {
@@ -58,20 +59,32 @@ public class MainController {
         if(logger.isDebugEnabled()) {
             logger.debug("Using view name " + viewName + " for main view");
         }
-        @SuppressWarnings("unchecked")
-        final Map<String,String> userInfo = (Map<String,String>) request.
-                getAttribute(PortletRequest.USER_INFO);
         
-        String escouai = userInfo.get("ESCOUAI");
-        FlashInfoList flashInfos = this.etablissementService.retrieveInfos(escouai);
+        final Map<String,String> userInfo;
+        String flashUrl = "";
+        String userAttribute ="";
+        String escouai = "";
+        try {
+        	 userInfo = (Map<String,String>) request.
+                     getAttribute(PortletRequest.USER_INFO);
+        	 flashUrl = PortletService.getFlashUrl();
+             userAttribute   = PortletService.getAttributPortletUrl(flashUrl);
+             escouai = userInfo.get(userAttribute);
+		} catch (ClassCastException e) {
+			logger.error("Exception trying to cast UserAttribute "+e.getMessage() );
+		} catch(Exception e ){
+			logger.error("Something went wrong during portlet request "+e.getMessage());
+		}
+        if(escouai == null || "".equals(escouai)){
+        	logger.warn("MainController empty "+PortletService.getAttributeToReplace(flashUrl)+" after portlet request  ");
+        	return null ;
+        }
+        FlashInfoList flashInfos = this.etablissementService.retrieveInfos(escouai, flashUrl);
         mav.addObject("flashinfo", flashInfos);       
-
         if(logger.isDebugEnabled()) {
             logger.debug("Rendering main view");
         }
-        logger.debug("Rendering main view");
         return mav;
-
     }
 
     @ActionMapping

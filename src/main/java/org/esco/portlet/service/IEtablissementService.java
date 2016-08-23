@@ -4,6 +4,6 @@ import org.esco.portlet.model.FlashInfoList;
 
 public interface IEtablissementService {
 
-	FlashInfoList retrieveInfos(String escouai);
+	FlashInfoList retrieveInfos(String escouai, String flashUrl);
 
 }

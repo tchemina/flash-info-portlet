@@ -4,9 +4,8 @@ import org.esco.portlet.model.FlashInfoList;
 
 public interface IUserService {
 
-	FlashInfoList retrieveGuestFlashInfo();
 
-	FlashInfoList retrieveEtabInfos(String escouai);
+	FlashInfoList retrieveInfos(String escouai, String flashUrl);
 
 	
 }

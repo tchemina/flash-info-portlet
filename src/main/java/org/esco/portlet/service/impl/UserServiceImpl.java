@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.esco.portlet.model.FlashInfo;
 import org.esco.portlet.model.FlashInfoList;
 import org.esco.portlet.service.IUserService;
+import org.esco.portlet.service.PortletService;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonArray;
@@ -20,34 +21,8 @@ import com.google.gson.JsonParser;
 @Service
 public class UserServiceImpl implements IUserService {
 
-	private String guestServiceUrl;
-	private String etabServiceUrl;
 	protected final Log logger = LogFactory.getLog(getClass());
-	@Override
-	public FlashInfoList retrieveGuestFlashInfo() {
-			return this.getServiceInfos(this.guestServiceUrl);
-	}
-	@Override
-	public FlashInfoList retrieveEtabInfos(String escouai) {
-		String getUrl = this.etabServiceUrl+"?escouai="+escouai;
-		 return this.getServiceInfos(getUrl);
-	}
 
-	public String getGuestServiceUrl() {
-		return guestServiceUrl;
-	}
-
-	public void setGuestServiceUrl(String guestServiceUrl) {
-		this.guestServiceUrl = guestServiceUrl;
-	}
-
-	public String getEtabServiceUrl() {
-		return etabServiceUrl;
-	}
-
-	public void setEtabServiceUrl(String etabServiceUrl) {
-		this.etabServiceUrl = etabServiceUrl;
-	}
 
 	private FlashInfoList getServiceInfos(String url) {
 		FlashInfoList flL = new FlashInfoList();
@@ -89,5 +64,9 @@ public class UserServiceImpl implements IUserService {
 		    }
 		}
 		return flL;
+	}
+	@Override
+	public FlashInfoList retrieveInfos(String escouai, String flashUrl) {
+		return this.getServiceInfos(PortletService.getFlashUrl(escouai, flashUrl));
 	}
 }

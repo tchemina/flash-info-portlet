@@ -36,7 +36,5 @@
 	<context:annotation-config />
 
 	<bean id="userService" class="org.esco.portlet.service.impl.UserServiceImpl">
-		<property name="guestServiceUrl" value="${guest.service.url}" />
-		<property name="etabServiceUrl" value="${etab.service.url}" />
 	</bean>
 </beans>

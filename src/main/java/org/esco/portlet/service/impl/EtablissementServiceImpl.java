@@ -11,12 +11,9 @@ public class EtablissementServiceImpl implements IEtablissementService {
 	@Autowired
 	private IUserService userService;
 	@Override
-	public FlashInfoList retrieveInfos(String escouai) {
-		if (escouai==null || escouai.equals("") || escouai.equals("guest")){
-			return this.userService.retrieveGuestFlashInfo();
-		}else{
-			return this.userService.retrieveEtabInfos(escouai);
-		}
+	public FlashInfoList retrieveInfos(String escouai, String flashUrl) {
+
+			return this.userService.retrieveInfos(escouai, flashUrl);
 		
 	}
 
