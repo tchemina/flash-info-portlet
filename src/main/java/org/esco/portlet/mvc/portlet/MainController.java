@@ -69,7 +69,7 @@ public class MainController {
         if(logger.isDebugEnabled()) {
             logger.debug("Rendering main view");
         }
-
+        logger.debug("Rendering main view");
         return mav;
 
     }

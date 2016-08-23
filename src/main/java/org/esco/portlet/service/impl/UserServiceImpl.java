@@ -58,6 +58,8 @@ public class UserServiceImpl implements IUserService {
 			logger.error("MalformedURLException parsing json object :" +e.getMessage());
 		} catch (IOException e) {
 			logger.error("IOException parsing json object :" +e.getMessage());
+		}catch (Exception e){
+			logger.error("Exception parsing url : "+e.getMessage());
 		}
 		JsonParser parser = new JsonParser();
 		JsonElement element = null;
@@ -69,20 +71,18 @@ public class UserServiceImpl implements IUserService {
 			logger.error("Exception parsing JSON Element at  :"+url+" with message : " +e.getMessage());
 		}
 		
-		if (element != null && element.isJsonObject()) {
-		    JsonObject flashinfos = element.getAsJsonObject();
-		    JsonObject rootflashinfos = flashinfos.getAsJsonObject("flashinfos");
-		    JsonArray datasets = rootflashinfos.getAsJsonArray("flashinfos");
-		    for (int i = 0; i < datasets.size(); i++) {
+		if (element != null && element.isJsonArray()) {
+		    JsonArray flashinfos = element.getAsJsonArray();
+		    for (int i = 0; i < flashinfos.size(); i++) {
 		    	String active = "";
 		    	if(i==0){
 		    		active = "active";
 		    	}
-		        JsonObject dataset = datasets.get(i).getAsJsonObject();
-		        String imgL = dataset.get("imgLink").getAsString();
+		        JsonObject dataset = flashinfos.get(i).getAsJsonObject();
+		        String imgL = dataset.get("mediaUrl").getAsString();
 		        String title = dataset.get("title").getAsString();
-		        String text = dataset.get("text").getAsString();
-		        String kml = dataset.get("knowMoreLink").getAsString();
+		        String text = dataset.get("summary").getAsString();
+		        String kml = dataset.get("link").getAsString();
 		        String alt = title;
 		        FlashInfo info = new FlashInfo(imgL, title, text, kml, alt, active, i);
 		        flL.add(info);
