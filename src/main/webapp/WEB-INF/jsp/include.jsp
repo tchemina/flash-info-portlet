@@ -18,15 +18,15 @@
     under the License.
 
 --%>
-<%@ page contentType="text/html" isELIgnored="false" %>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%-- 
-Erreur avec la taglib portlet 
-<%@ taglib prefix="portlet" uri="http://java.sun.com/portlet_2_0" %> --%>
-
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="rs" uri="http://www.jasig.org/resource-server" %>
 <portlet:defineObjects/>
+<c:set var="usePortalJsLibs" value="${renderRequest.preferences.map['usePortalJsLibs'][0]}"/>
+<c:set var="portalJsNamespace" value="${renderRequest.preferences.map['portalJsNamespace'][0]}"/>
+<c:set var="n"><portlet:namespace/></c:set>

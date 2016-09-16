@@ -37,20 +37,64 @@
     Starter Spring PortletMVC shell for Jasig JSR-286 Portlets
   </description>
 
+  <scm>
+    <connection>scm:git:ssh://git@github.com:GIP-RECIA/esco-ChangeEtablissement.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:GIP-RECIA/esco-ChangeEtablissement.git</developerConnection>
+    <url>https://github.com/GIP-RECIA/esco-ChangeEtablissement.git</url>
+    <tag>HEAD</tag>
+  </scm>
+  <distributionManagement>
+    <repository>
+      <id>esco-releases</id>
+      <url>http://www.esco-portail.org/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>esco-snapshots</id>
+      <url>http://www.esco-portail.org/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <!--<repositories>-->
+    <!--<repository>-->
+      <!--<id>jasig-3rd-party</id>-->
+      <!--<name>Jasig 3rd Party Repository</name>-->
+      <!--<url>http://developer.jasig.org/repo/content/repositories/3rd-party</url>-->
+      <!--<releases>-->
+        <!--<enabled>true</enabled>-->
+      <!--</releases>-->
+      <!--<snapshots>-->
+        <!--<enabled>false</enabled>-->
+      <!--</snapshots>-->
+    <!--</repository>-->
+    <!--&lt;!&ndash;<repository>&ndash;&gt;-->
+      <!--&lt;!&ndash;<id>spring-repo</id>&ndash;&gt;-->
+      <!--&lt;!&ndash;<name>Spring Repository</name>&ndash;&gt;-->
+      <!--&lt;!&ndash;<url>http://repo.spring.io/release</url>&ndash;&gt;-->
+      <!--&lt;!&ndash;<releases>&ndash;&gt;-->
+        <!--&lt;!&ndash;<enabled>true</enabled>&ndash;&gt;-->
+      <!--&lt;!&ndash;</releases>&ndash;&gt;-->
+      <!--&lt;!&ndash;<snapshots>&ndash;&gt;-->
+        <!--&lt;!&ndash;<enabled>false</enabled>&ndash;&gt;-->
+      <!--&lt;!&ndash;</snapshots>&ndash;&gt;-->
+    <!--&lt;!&ndash;</repository>&ndash;&gt;-->
+  <!--</repositories>-->
+
   <!-- Dependency Version Properties -->
   <properties>
-    <portlet-api.version>2.0</portlet-api.version>
-    <servlet-api.version>2.5</servlet-api.version>
-    <spring.version>4.2.2.RELEASE</spring.version>
-    <jstl.version>1.2</jstl.version>
-    <logback.version>1.1.3</logback.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.source>1.7</project.build.source>
+    <project.build.target>1.7</project.build.target>
+
+    <apache.http.version>4.5.2</apache.http.version>
+    <spring.version>4.2.5.RELEASE</spring.version>
+    <logback.version>1.1.7</logback.version>
     <junit.version>4.12</junit.version>
     <resource-server.version>1.0.43</resource-server.version>
-    <slf4j.version>1.7.12</slf4j.version>
-    <log4j.version>1.2.17</log4j.version>
-    <commons.version>1.1.3</commons.version>
-    <java.version>1.7</java.version>
+    <mockito.version>1.10.19</mockito.version>
+    <jackson.version>2.8.1</jackson.version>
+
     <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
+    <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
     <surefire-report-plugin.version>2.0-beta-1</surefire-report-plugin.version>
     <cobertura-maven-plugin.version>2.4</cobertura-maven-plugin.version>
     <findbugs-maven-plugin.version>2.3.1</findbugs-maven-plugin.version>
@@ -64,30 +108,76 @@
       <dependency>
         <groupId>javax.portlet</groupId>
         <artifactId>portlet-api</artifactId>
-        <version>${portlet-api.version}</version>
-        <scope>provided</scope>
+        <version>2.0</version>
       </dependency>
       <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>jstl</artifactId>
-        <version>${jstl.version}</version>
+        <version>1.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.taglibs</groupId>
+        <artifactId>taglibs-standard</artifactId>
+        <version>1.2.5</version>
+        <type>pom</type>
       </dependency>
       <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>servlet-api</artifactId>
-        <version>${servlet-api.version}</version>
-        <scope>provided</scope>
+        <version>2.5</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.portals.pluto</groupId>
+        <artifactId>pluto-taglib</artifactId>
+        <version>2.1.0-M3</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
-        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.kubek2k</groupId>
+        <artifactId>springockito</artifactId>
+        <version>1.0.9</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jasig.resourceserver</groupId>
+        <artifactId>resource-server-content</artifactId>
+        <version>${resource-server.version}</version>
+        <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.jasig.resourceserver</groupId>
         <artifactId>resource-server-utils</artifactId>
         <version>${resource-server.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
@@ -124,57 +214,64 @@
         <artifactId>spring-webmvc-portlet</artifactId>
         <version>${spring.version}</version>
       </dependency>
-
-      <!-- For sl4j/logback logging, see https://wiki.jasig.org/display/PLT/Logging+Best+Practices -->
       <dependency>
-        <groupId>commons-logging</groupId>
-        <artifactId>commons-logging</artifactId>
-        <version>${commons.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>${log4j.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jul-to-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>log4j-over-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>${slf4j.version}</version>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
       </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
-        <scope>runtime</scope>
       </dependency>
-      <!-- End of logging section -->
-
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${apache.http.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>1.1.0.Final</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
     <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.taglibs</groupId>
+      <artifactId>taglibs-standard</artifactId>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>javax.portlet</groupId>
       <artifactId>portlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.portals.pluto</groupId>
+      <artifactId>pluto-taglib</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jasig.resourceserver</groupId>
+      <artifactId>resource-server-content</artifactId>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>org.jasig.resourceserver</groupId>
+      <artifactId>resource-server-utils</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
@@ -188,30 +285,8 @@
       <artifactId>spring-context</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jasig.resourceserver</groupId>
-      <artifactId>resource-server-utils</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aop</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -224,34 +299,52 @@
 
     <!-- Logging section -->
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jul-to-slf4j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-    </dependency>
-    <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <!-- End of logging section -->
 
-	<!--  JSON Utilities  -->
-	<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.6.2</version>
-</dependency>
+    <!--  JSON Utilities  -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+    </dependency>
+
+    <!-- Test section -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kubek2k</groupId>
+      <artifactId>springockito</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -259,20 +352,49 @@
       <plugin>
         <groupId>com.mycila.maven-license-plugin</groupId>
         <artifactId>maven-license-plugin</artifactId>
+        <version>1.10.b1</version>
         <configuration>
-          <aggregate>true</aggregate>
+          <header>etc/header.template</header>
+          <includes>
+            <include>**/*.java</include>
+            <include>src/**/*.xml</include>
+            <include>**/*.properties</include>
+            <include>src/test/**</include>
+            <include>**/*.jsp</include>
+            <!-- <include>**/*.txt</include> -->
+            <!-- <include>**/*.sql</include> -->
+            <include>**/*.js</include>
+            <include>**/*.css</include>
+          </includes>
           <excludes>
-            <exclude>target/**</exclude>
-            <exclude>pom.xml.*</exclude>
-            <exclude>release.properties</exclude>
-            <exclude>LICENSE</exclude>
-            <exclude>NOTICE</exclude>
-            <exclude>NOTICE.template</exclude>
-            <exclude>bin/**</exclude>
-            <exclude>.idea/**</exclude>
+            <exclude>src/webapp/rs/**</exclude>
           </excludes>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.2</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <localCheckout>true</localCheckout>
+          <tagNameFormat>${project.artifactId}-@{project.version}</tagNameFormat>
+          <pushChanges>true</pushChanges>
+        </configuration>
+      </plugin>
+      <!--<plugin>-->
+        <!--<groupId>org.apache.maven.plugins</groupId>-->
+        <!--<artifactId>maven-source-plugin</artifactId>-->
+        <!--<version>2.2.1</version>-->
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<id>attach-sources</id>-->
+            <!--<goals>-->
+              <!--<goal>jar</goal>-->
+            <!--</goals>-->
+          <!--</execution>-->
+        <!--</executions>-->
+      <!--</plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -280,30 +402,38 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${project.build.source}</source>
+          <target>${project.build.target}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jasig.resourceserver</groupId>
+        <artifactId>resource-server-plugin</artifactId>
+        <version>${resource-server.version}</version>
         <executions>
           <execution>
-            <id>enforce-versions</id>
+            <id>aggregate-resources</id>
+            <phase>prepare-package</phase>
             <goals>
-              <goal>enforce</goal>
+              <goal>batch-aggregate</goal>
             </goals>
+            <inherited>false</inherited>
             <configuration>
-              <rules>
-                <requireJavaVersion>
-                  <version>${java.version}</version>
-                </requireJavaVersion>
-              </rules>
+              <displayJsWarnings>false</displayJsWarnings>
+              <includes>
+                <include>skin.xml</include>
+                <!--
+                <include>skin-shared.xml</include>
+                <include>skin-mobile.xml</include>
+                <include>skin-mobile-shared.xml</include>
+                 -->
+              </includes>
+              <sharedJavaScriptDirectory>scripts/</sharedJavaScriptDirectory>
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -312,6 +442,35 @@
           <attachClasses>true</attachClasses>
           <warName>${project.artifactId}</warName>
           <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+          <overlays>
+            <overlay>
+              <groupId>org.jasig.resourceserver</groupId>
+              <artifactId>resource-server-content</artifactId>
+              <includes>
+                <include>${basedir}/src/main/webapp/rs/jquery/1.10.2/</include>
+              </includes>
+            </overlay>
+          </overlays>
+          <webResources>
+            <resource>
+              <filtering>true</filtering>
+              <directory>src/main/webapp</directory>
+              <includes>
+                <include>**/portlet.xml</include>
+              </includes>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jasig.maven</groupId>
+        <artifactId>maven-notice-plugin</artifactId>
+        <version>1.0.4</version>
+        <configuration>
+          <noticeTemplate>etc/NOTICE.template</noticeTemplate>
+          <licenseMapping>
+            <param>/etc/license-mappings.xml</param>
+          </licenseMapping>
         </configuration>
       </plugin>
       <plugin>
@@ -329,52 +488,65 @@
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>${findbugs-maven-plugin.version}</version>
       </plugin>
+      <plugin>
+        <groupId>net.jlehtinen.portlet</groupId>
+        <artifactId>portlet-prototyping-maven-plugin</artifactId>
+        <version>0.9</version>
+        <configuration>
+          <portletNames />
+
+          <!-- System properties to communicate to the JVM which will launch Jetty. -->
+          <systemProperties>
+            <!-- Indicate to the JVM we are in test environment -->
+            <systemProperty>
+              <name>flash-info-portlet.testEnv</name>
+              <value>true</value>
+            </systemProperty>
+            <systemProperty>
+              <name>flash-info-portlet.flashUrl</name>
+              <value>https://test-lycee.reciaent.fr/publisher/published/flash/{ESCOUAICourant}</value>
+            </systemProperty>
+            <systemProperty>
+              <name>file.encoding</name>
+              <value>UTF-8</value>
+            </systemProperty>
+            <!--<systemProperty>-->
+              <!--<name>java.util.logging.config.file</name>-->
+              <!--<value>${basedir}/src/main/resources/logging.properties</value>-->
+            <!--</systemProperty>-->
+          </systemProperties>
+
+          <!-- Configuration of SessionHandler to force session path to '/' -->
+          <!-- Equivalent of tomcat 'emptySessionPath = true' -->
+          <webAppConfig implementation="org.mortbay.jetty.plugin.Jetty6PluginWebAppContext">
+            <sessionHandler implementation="org.mortbay.jetty.servlet.SessionHandler">
+              <sessionManager implementation="org.mortbay.jetty.servlet.HashSessionManager">
+                <sessionPath>/</sessionPath>
+              </sessionManager>
+            </sessionHandler>
+          </webAppConfig>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
   <profiles>
     <profile>
-      <id>localdev</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.portals.pluto</groupId>
-            <artifactId>maven-pluto-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>generate-resources</phase>
-                <goals>
-                  <goal>assemble</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>${maven-war-plugin.version}</version>
-            <configuration>
-              <classifier>localdev</classifier>
-              <warName>${project.artifactId}</warName>
-              <webXml>${project.build.directory}/pluto-resources/web.xml</webXml>
-            </configuration>
-          </plugin>
-          <plugin>
-            <artifactId>org.jasig.portal.maven</artifactId>
-            <groupId>uportal-maven-plugin</groupId>
-            <version>${uportal-maven-plugin.version}</version>
-            <configuration>
-              <contextName>${project.artifactId}</contextName>
-              <artifactId>${project.artifactId}</artifactId>
-              <artifactGroupId>${project.groupId}</artifactGroupId>
-              <artifactVersion>${project.version}</artifactVersion>
-              <artifactClassifier>localdev</artifactClassifier>
-              <removeExistingDirectories>true</removeExistingDirectories>
-              <extractWars>true</extractWars>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
+      <id>prod</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <logback.loglevel>INFO</logback.loglevel>
+        <portlet.usePortalJsLibs>true</portlet.usePortalJsLibs>
+      </properties>
+    </profile>
+    <profile>
+      <id>test</id>
+      <properties>
+        <logback.loglevel>DEBUG</logback.loglevel>
+        <portlet.usePortalJsLibs>false</portlet.usePortalJsLibs>
+      </properties>
     </profile>
   </profiles>
 

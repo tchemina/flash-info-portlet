@@ -63,7 +63,7 @@
      | http://logback.qos.ch/manual/layouts.html#conversionWord
      +-->
     <encoder>
-      <pattern>%-5level [%thread] %logger{36} %d{ISO8601} - %msg%n</pattern>
+      <pattern>%d{ISO8601} %-5level [%thread] %logger: - %msg%n</pattern>
     </encoder>
     
     <!--
@@ -75,23 +75,21 @@
      +-->
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <fileNamePattern>${LOG_DIR}/${CONTEXT_NAME}.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
-      <maxHistory>28</maxHistory>
+      <maxHistory>366</maxHistory>
     </rollingPolicy>
   </appender>
 
   <!-- 
-   | Setup default log level to INFO
+   | Setup default log level to WARN
    +-->
-  <root level="INFO">
+  <root level="WARN">
     <appender-ref ref="LOG" />
   </root>
 
   <!-- 
    | Turn up logging for portlet specific package
    +-->
-  <!--
-  <logger name="org.esco.portlet" additivity="false" level="DEBUG">
+  <logger name="org.esco.portlet" additivity="false" level="${logback.loglevel}">
     <appender-ref ref="LOG" />
   </logger>
-  -->
 </configuration>

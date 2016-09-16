@@ -18,19 +18,12 @@
 		<property name="location" value="classpath:configuration.properties" />
 	</bean>
 
-	<context:component-scan base-package="org.esco.portlet.service" />
-	<context:annotation-config />
 
-	<bean id="userResource" class="org.esco.portlet.dao.impl.UserResourceImpl">
-		<!--<property name="currentEtabCodeInfoKey" value="${userInfo.key.currentEtabId}" />-->
-		<property name="mockedUserResource" ref="userResourceMock"/>
-	</bean>
-	<!--<bean id="flashInfoResource" class="org.esco.portlet.dao.impl.FlashInfoResourceGsonImpl" />-->
-	<bean id="flashInfoResource" class="org.esco.portlet.dao.impl.FlashInfoResourceJacksonImpl" />
-
-	<bean id="userResourceMock" class="org.esco.portlet.dao.impl.MockUserResourceImpl">
-	</bean>
 	<bean id="flashInfoResourceMock" class="org.esco.portlet.dao.impl.MockFlashInfoResourceImpl" />
+	<bean id="flashInfoResourceGson" class="org.esco.portlet.dao.impl.FlashInfoResourceGsonImpl" />
+	<bean id="flashInfoResourceJackson" class="org.esco.portlet.dao.impl.FlashInfoResourceJacksonImpl">
+		<property name="restTemplate" ref="restTemplate" />
+	</bean>
 
 	<bean id="jsonHttpMessageConverter"
 				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -42,15 +35,15 @@
 		</property>
 	</bean>
 
-	<bean id="hostnameVerifier" class="org.esco.portlet.dao.util.EscoHostnameVerifier" p:trustedDomains="${hostnames.trusted}">
-		<!--<property name="trustedDomains">-->
-			<!--<set>-->
-				<!--<value>test.reciacas.fr</value>-->
-				<!--<value>test-lycee.reciaent.fr</value>-->
-				<!--<value>test-cfa.reciaent.fr</value>-->
-				<!--<value>test.reciaclg.fr</value>-->
-			<!--</set>-->
-		<!--</property>-->
+	<bean id="hostnameVerifier" class="org.esco.portlet.dao.util.EscoHostnameVerifier">
+		<property name="trustedDomains">
+			<set>
+				<value>test.reciacas.fr</value>
+				<value>test-lycee.reciaent.fr</value>
+				<value>test-cfa.reciaent.fr</value>
+				<value>test.reciaclg.fr</value>
+			</set>
+		</property>
 	</bean>
 
 	<!-- based on org.apache.http.impl.client.HttpClients.createSystem -->
@@ -64,14 +57,21 @@
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 		<constructor-arg>
 			<bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"
-						p:readTimeout="5000"
-						p:connectTimeout="5000" >
+						p:readTimeout="2000"
+						p:connectTimeout="1000">
 				<property name="httpClient" ref="httpClient" />
 			</bean>
 		</constructor-arg>
 		<property name="messageConverters">
 			<list><ref bean="jsonHttpMessageConverter"/></list>
 		</property>
+	</bean>
+
+	<bean id="resourceGood" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg value="json/mockGuestService"/>
+	</bean>
+	<bean id="resourceBad" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg value="json/mockGuestServiceBad"/>
 	</bean>
 
 </beans>

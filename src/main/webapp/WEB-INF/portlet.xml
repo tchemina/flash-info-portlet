@@ -41,8 +41,32 @@
             <portlet-mode>help</portlet-mode>
         </supports>
         <portlet-info>
-            <title>flash-info-portlet Portlet</title>
+            <title>Flash Info Portlet</title>
         </portlet-info>
+
+        <portlet-preferences>
+            <!-- If true, emergency alerts will piggyback on the portal's
+                 JavaScript library (jQuery).  The needs of this portlet are
+                 very lightweight and the portlet runs infrequently, so we'll
+                 default to 'true' in this case. -->
+            <preference>
+                <name>usePortalJsLibs</name>
+                <value>${portlet.usePortalJsLibs}</value>
+            </preference>
+
+            <!-- If 'EmergencyAlertController.usePortalJsLibs' is true, this
+                 value will help find the portal's JavaScript library (jQuery).
+                 If not, it has no impact. -->
+            <preference>
+                <name>portalJsNamespace</name>
+                <value>up</value>
+            </preference>
+
+            <preference>
+                <name>flashUrl</name>
+                <value>https://test-lycee.reciaent.fr/publisher/published/flash/{ESCOUAICourant}</value>
+            </preference>
+        </portlet-preferences>
     </portlet>
     <user-attribute>
         <description>User Display Name</description>

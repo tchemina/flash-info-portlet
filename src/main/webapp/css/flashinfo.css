@@ -8,8 +8,7 @@
 }
 .carousel-caption {
 	z-index: 0;
-	padding: 1%;
-	padding-top: 5%;
+	padding: 2em 3em;
 	text-align: left;
 	top: 0;
 	right: 0;
@@ -24,15 +23,6 @@
 .glyphicon-chevron-right:before {
     content: "\e258";
 }
-/*.background--dark {
-	color: white;
-} 
-.background--light{
-	color: black;
-}
-.background--complex{
-	color: gray;
-}*/
 .carousel-caption>p {
 	display: block;
 	max-width: 80%;
@@ -68,7 +58,6 @@
 /* Small devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
 	.carousel-caption {
-		padding :10%;
 		width: 100%;
 		height:100%;
 	}

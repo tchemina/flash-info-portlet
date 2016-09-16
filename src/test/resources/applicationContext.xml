@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- This is the root Spring WebApplicationContext. Place in this context 
+		the service, dao, and utility-level beans the web tier will access. NOTE: 
+		If you have multiple portlets in portlet.xml, you can move beans from the 
+		web-tier Spring WebApplicationContext to the root context to avoid having 
+		the bean definitions duplicated. -->
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:configuration.properties" />
+	</bean>
+
+	<!--<context:component-scan base-package="org.esco.portlet.service" />-->
+	<!--<context:annotation-config />-->
+
+	<bean id="userResourceMock" class="org.esco.portlet.dao.impl.MockUserResourceImpl" />
+	<bean id="flashInfoResourceMock" class="org.esco.portlet.dao.impl.MockFlashInfoResourceImpl" />
+
+  <bean id="flashUrlBuilder" class="org.esco.portlet.service.bean.FlashUrlBuilderImpl" >
+    <property name="userResource" ref="userResourceMock" />
+  </bean>
+
+	<bean id="flashInfoService" class="org.esco.portlet.service.impl.FlashInfoServiceImpl">
+		<property name="flashInfoResource" ref="flashInfoResourceMock"/>
+		<property name="flashUrlBuilder" ref="flashUrlBuilder" />
+	</bean>
+</beans>
