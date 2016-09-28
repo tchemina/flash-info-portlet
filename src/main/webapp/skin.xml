@@ -14,7 +14,5 @@
 	<js included="aggregated" >rs/color-thief/2.0.1/color-thief.min.js</js>
 	<js included="plain" >rs/background-check/1.2.2/background-check.js</js>
 	<js included="aggregated" >rs/background-check/1.2.2/background-check.min.js</js>
-	<js included="plain" >rs/clamp/0.6.4-bw/clamp.js</js>
-	<js included="aggregated" >rs/clamp/0.6.4-bw/clamp.min.js</js>
 
 </resources>

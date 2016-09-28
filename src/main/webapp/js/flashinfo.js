@@ -7,18 +7,16 @@ flashInfoPortlet.init = function($, namespace, portletId) {
 	(function initContainer($, namespace, portletId) {
 		$(window).bind('load', function () {
 
-			console.log("namespace : " + namespace);
+			//console.log("namespace : " + namespace);
 			if ($(namespace + ' #myCarousel_' + portletId + " .item").length > 0) {
 				initBackgroundChecker($, namespace, portletId);
 				initCaption($, namespace, portletId);
-				//clampCaption($, namespace, portletId, null);
 
 				// evenement de slid du carousel terminé
 				// BackgroundCheck en a besoin pour definir l'element sur lequel il va s'appliquer
 				$(namespace + ' #myCarousel_' + portletId).on('slid.bs.carousel', function (e) {
 					checkImageBackground($, namespace, portletId, e);
 					colorizeCaption($, namespace, portletId, e);
-					//clampCaption($, namespace, portletId, e)
 				});
 			} else {
 				console.log("FlashInfo doesn't have element to show !")
@@ -30,8 +28,6 @@ flashInfoPortlet.init = function($, namespace, portletId) {
 	function initBackgroundChecker($, namespace, portletId) {
 		var src_init = $(namespace + ' .item').find('img')[0];
 		var bcTarget = $(namespace + ' .item').children('.carousel-caption');
-		console.log("Targets : " + bcTarget);
-		console.log(src_init);
 		if(src_init && bcTarget) {
 			BackgroundCheck.init({
 				targets: bcTarget,
@@ -47,31 +43,6 @@ flashInfoPortlet.init = function($, namespace, portletId) {
 		var targetCaption = $(namespace + ' #myCarousel_' + portletId + ' .active').children('.carousel-caption');
 		BackgroundCheck.set('images', sourceImage);
 		BackgroundCheck.set('targets', targetCaption);
-	}
-
-	function clampCaption($, namespace, portletId, e) {
-		var maxTextLines = 5;
-		if (e !== null) {
-			var captionElement = $(namespace + ' #myCarousel_' + portletId + ' .active').children('.carousel-caption').children('p');
-			var captionClassName = captionElement.attr('class');
-			var captionText = document.getElementsByClassName(captionClassName)[1];
-			if (captionText) {
-				$clamp(captionText, {
-					clamp: maxTextLines,
-					useNativeClamp: false,
-					animate: false
-				});
-			}
-		} else {
-			var captionText = document.getElementsByClassName('carousel-text0')[1];
-			if (captionText) {
-				$clamp(captionText, {
-					clamp: maxTextLines,
-					useNativeClamp: false,
-					animate: false
-				});
-			}
-		}
 	}
 
 	function getOpacityOf(carouselCaption) {
@@ -109,11 +80,12 @@ flashInfoPortlet.init = function($, namespace, portletId) {
 		var carouselCaption = $(namespace + ' #myCarousel_' + portletId + ' .active').children('.carousel-caption');
 		var opacityOfCaption = getOpacityOf(carouselCaption);
 		carouselCaption.css("background-color", "rgba(" + color + "," + opacityOfCaption + ")");
-		colorText($, namespace, color, e);
+		colorText($, namespace, portletId, color, e);
 	}
 
 	function colorText($, namespace, portletId, color, e) {
 		var o = Math.round(((parseInt(color[0]) * 299) + (parseInt(color[1]) * 587) + (parseInt(color[2]) * 114)) / 1000);
+		//console.log("Colortext params :", color, o, e);
 		var carouselCaption;
 		if (e !== null) {
 			var carouselCaption = $(namespace + ' #myCarousel_' + portletId + ' .active').children('.carousel-caption');
