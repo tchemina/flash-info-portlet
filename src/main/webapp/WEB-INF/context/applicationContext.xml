@@ -3,9 +3,11 @@
 			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 			 xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
 			 xmlns:util="http://www.springframework.org/schema/util"
+			 xmlns:cache="http://www.springframework.org/schema/cache"
 			 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+  http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 	<!-- This is the root Spring WebApplicationContext. Place in this context 
 		the service, dao, and utility-level beans the web tier will access. NOTE: 
@@ -20,6 +22,7 @@
 
 	<context:component-scan base-package="org.esco.portlet.service" />
 	<context:annotation-config />
+	<cache:annotation-driven />
 
 	<bean id="userResource" class="org.esco.portlet.dao.impl.UserResourceImpl">
 		<!--<property name="currentEtabCodeInfoKey" value="${userInfo.key.currentEtabId}" />-->
@@ -43,14 +46,6 @@
 	</bean>
 
 	<bean id="hostnameVerifier" class="org.esco.portlet.dao.util.EscoHostnameVerifier" p:trustedDomains="${hostnames.trusted}">
-		<!--<property name="trustedDomains">-->
-			<!--<set>-->
-				<!--<value>test.reciacas.fr</value>-->
-				<!--<value>test-lycee.reciaent.fr</value>-->
-				<!--<value>test-cfa.reciaent.fr</value>-->
-				<!--<value>test.reciaclg.fr</value>-->
-			<!--</set>-->
-		<!--</property>-->
 	</bean>
 
 	<!-- based on org.apache.http.impl.client.HttpClients.createSystem -->
@@ -72,6 +67,16 @@
 		<property name="messageConverters">
 			<list><ref bean="jsonHttpMessageConverter"/></list>
 		</property>
+	</bean>
+
+	<bean id="cacheManager"
+				class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcache"/>
+	</bean>
+
+	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml"/>
+		<property name="shared" value="true"/>
 	</bean>
 
 </beans>

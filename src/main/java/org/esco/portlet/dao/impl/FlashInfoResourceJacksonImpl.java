@@ -8,6 +8,7 @@ import org.esco.portlet.model.FlashInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -22,6 +23,7 @@ public class FlashInfoResourceJacksonImpl implements IFlashInfoResource {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Cacheable(cacheNames = "flashinfos", key = "#flashUrl")
     public List<FlashInfo> retrieveInfos(String flashUrl) {
         return this.getServiceInfos(flashUrl);
     }
