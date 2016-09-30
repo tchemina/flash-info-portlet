@@ -22,6 +22,7 @@
 	 * Use an anonymous function to initialize all JavaScript for this portlet.
 	 */
 	(function($, namespace, portletId) {
+		adaptiveBackgroundApp.init($);
 		flashInfoPortlet.init($, namespace, portletId);
 	})(${n}.jQuery, '#flashInfoPortlet_${n}', '${n}');
 

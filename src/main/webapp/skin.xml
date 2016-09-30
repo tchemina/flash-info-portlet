@@ -10,9 +10,6 @@
 	<!-- Order is important here, the log script needs to be the first thing
 		followed by the debug toggle -->
 	<js>js/flashinfo.js</js>
-	<js included="plain" >rs/color-thief/2.0.1/color-thief.js</js>
-	<js included="aggregated" >rs/color-thief/2.0.1/color-thief.min.js</js>
-	<js included="plain" >rs/background-check/1.2.2/background-check.js</js>
-	<js included="aggregated" >rs/background-check/1.2.2/background-check.min.js</js>
-
+	<js included="plain" >rs/jquery/adaptive-backgrounds/1.0.4-BETA/jquery.adaptive-backgrounds.js</js>
+	<js included="aggregated" >rs/jquery/adaptive-backgrounds/1.0.4-BETA/jquery.adaptive-backgrounds.min.js</js>
 </resources>
