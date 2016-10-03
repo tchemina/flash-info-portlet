@@ -57,6 +57,11 @@
             <preference>
                 <name>portalJsNamespace</name>
                 <value>up</value>
+           </preference>
+
+            <preference>
+                <name>openKnownMoreInModal</name>
+                <value>true</value>
             </preference>
 
             <preference>

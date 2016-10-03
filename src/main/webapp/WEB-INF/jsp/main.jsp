@@ -60,7 +60,7 @@
 						<div class="carousel-caption">
 							<h3 class="carousel-text${loop.index}">${entry.title}</h3>
 							<p class="carousel-text${loop.index}">${entry.text}</p>
-							<a href="${entry.knowMoreLink}"> <span class="knowMoreText"><spring:message
+							<a href="${entry.knowMoreLink}" target="_blank"> <span class="knowMoreText"><spring:message
 									code="portlet.knowmore" /></span>
 							</a>
 						</div>
@@ -78,6 +78,21 @@
 				<span class="sr-only"><spring:message code="portlet.next" /></span>
 			</a>
 			</c:if>
+		</div>
+		<div class="modal fade" id="flashInfoModal${n}" tabindex="-1" role="dialog" aria-labelledby="FlashInfoModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"><spring:message code="portlet.modal.title" /></h4>
+
+					</div>
+					<div class="modal-body"><div class="te"></div></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="portlet.modal.close" /></button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</c:if>
 </div>

@@ -108,6 +108,13 @@
 .flashInfoPortlet .ab-light .carousel-indicators > li.active {
     background-color: black;
 }
+
+@media (min-width : 1024px) {
+    .flashInfoPortlet .modal-dialog {
+        min-width: 80%;
+        max-width: 1024px;
+    }
+}
 /* Extra small devices (phones, less than 768px) */
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */

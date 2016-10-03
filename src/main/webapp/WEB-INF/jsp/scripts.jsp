@@ -37,9 +37,9 @@
 	/**
 	 * Use an anonymous function to initialize all JavaScript for this portlet.
 	 */
-	(function($, namespace, portletId) {
+	(function($, namespace, portletId, openKnownMoreInModal) {
 		adaptiveBackgroundApp.init($);
-		flashInfoPortlet.init($, namespace, portletId);
-	})(${n}.jQuery, '#flashInfoPortlet_${n}', '${n}');
+		flashInfoPortlet.init($, namespace, portletId, openKnownMoreInModal);
+	})(${n}.jQuery, '#flashInfoPortlet_${n}', '${n}', ${openKnownMoreInModal});
 
 </rs:compressJs></script>

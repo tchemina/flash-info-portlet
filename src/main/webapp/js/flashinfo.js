@@ -16,10 +16,10 @@
 var flashInfoPortlet = flashInfoPortlet || {};
 
 
-flashInfoPortlet.init = function($, namespace, portletId) {
+flashInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
 
 
-    (function initContainer($, namespace, portletId) {
+    (function initContainer($, namespace, portletId, openKnownMoreInModal) {
         $(window).bind('load', function () {
 
             //console.log("namespace : " + namespace);
@@ -52,12 +52,20 @@ flashInfoPortlet.init = function($, namespace, portletId) {
                 $(namespace + ' #myCarousel_' + portletId).on('slid.bs.carousel', function (e) {
                     colorCarouselElements($, namespace, portletId);
                 });
+
+                // event on open flash know more url
+                if (openKnownMoreInModal) {
+                    $(namespace + ' #myCarousel_' + portletId + ' .carousel-caption>a').on('click', function (e) {
+                        e.preventDefault();
+                        $(namespace + ' #flashInfoModal' + portletId).modal('show').find('.modal-body').load($(this).attr('href'));
+                    });
+                }
             } else {
                 console.log("FlashInfo doesn't have element to show !")
             }
         });
 
-    })($, namespace, portletId);
+    })($, namespace, portletId, openKnownMoreInModal);
 
     function colorCarouselElements($, namespace, portletId) {
         var selector = $(namespace + ' #myCarousel_' + portletId + ' .item.active');
