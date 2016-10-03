@@ -38,9 +38,9 @@
   </description>
 
   <scm>
-    <connection>scm:git:ssh://git@github.com:GIP-RECIA/esco-ChangeEtablissement.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com:GIP-RECIA/esco-ChangeEtablissement.git</developerConnection>
-    <url>https://github.com/GIP-RECIA/esco-ChangeEtablissement.git</url>
+    <connection>scm:git:ssh://git@github.com/GIP-RECIA/flash-info-portlet.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/GIP-RECIA/flash-info-portlet.git</developerConnection>
+    <url>https://github.com/GIP-RECIA/flash-info-portlet.git</url>
     <tag>HEAD</tag>
   </scm>
   <distributionManagement>
