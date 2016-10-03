@@ -18,8 +18,7 @@
     under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <parent>
     <groupId>org.jasig.parent</groupId>
@@ -33,6 +32,7 @@
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>flash-info-portlet</name>
+  <inceptionYear>2016</inceptionYear>
   <description>
     Starter Spring PortletMVC shell for Jasig JSR-286 Portlets
   </description>
@@ -377,11 +377,15 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>com.mycila.maven-license-plugin</groupId>
-        <artifactId>maven-license-plugin</artifactId>
-        <version>1.10.b1</version>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>3.0</version>
         <configuration>
           <header>etc/header.template</header>
+          <properties>
+            <owner>ESUP-Portail</owner>
+            <website>https://www.esup-portail.org/</website>
+          </properties>
           <includes>
             <include>**/*.java</include>
             <include>src/**/*.xml</include>
@@ -394,9 +398,17 @@
             <include>**/*.css</include>
           </includes>
           <excludes>
-            <exclude>src/webapp/rs/**</exclude>
+            <exclude>src/main/webapp/rs/**</exclude>
+            <exclude>src/test/resources/json/**</exclude>
           </excludes>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
