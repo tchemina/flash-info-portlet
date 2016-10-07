@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet;
+package org.esco.portlet.flashinfo;
 
-import org.esco.portlet.dao.impl.MockUserResourceImpl;
-import org.esco.portlet.service.bean.IFlashUrlBuilder;
+import org.esco.portlet.flashinfo.dao.impl.MockUserResourceImpl;
+import org.esco.portlet.flashinfo.service.bean.IFlashUrlBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

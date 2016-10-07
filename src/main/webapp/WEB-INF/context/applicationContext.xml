@@ -37,20 +37,20 @@
 		<property name="location" value="classpath:configuration.properties" />
 	</bean>
 
-	<context:component-scan base-package="org.esco.portlet.service" />
+	<context:component-scan base-package="org.esco.portlet.flashinfo.service" />
 	<context:annotation-config />
 	<cache:annotation-driven />
 
-	<bean id="userResource" class="org.esco.portlet.dao.impl.UserResourceImpl">
+	<bean id="userResource" class="org.esco.portlet.flashinfo.dao.impl.UserResourceImpl">
 		<!--<property name="currentEtabCodeInfoKey" value="${userInfo.key.currentEtabId}" />-->
 		<property name="mockedUserResource" ref="userResourceMock"/>
 	</bean>
-	<!--<bean id="flashInfoResource" class="org.esco.portlet.dao.impl.FlashInfoResourceGsonImpl" />-->
-	<bean id="flashInfoResource" class="org.esco.portlet.dao.impl.FlashInfoResourceJacksonImpl" />
+	<!--<bean id="flashInfoResource" class="org.esco.portlet.flashinfo.dao.impl.FlashInfoResourceGsonImpl" />-->
+	<bean id="flashInfoResource" class="org.esco.portlet.flashinfo.dao.impl.FlashInfoResourceJacksonImpl" />
 
-	<bean id="userResourceMock" class="org.esco.portlet.dao.impl.MockUserResourceImpl">
+	<bean id="userResourceMock" class="org.esco.portlet.flashinfo.dao.impl.MockUserResourceImpl">
 	</bean>
-	<bean id="flashInfoResourceMock" class="org.esco.portlet.dao.impl.MockFlashInfoResourceImpl" />
+	<bean id="flashInfoResourceMock" class="org.esco.portlet.flashinfo.dao.impl.MockFlashInfoResourceImpl" />
 
 	<bean id="jsonHttpMessageConverter"
 				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -62,8 +62,7 @@
 		</property>
 	</bean>
 
-	<!--<bean id="hostnameVerifier" class="org.esco.portlet.dao.util.EscoHostnameVerifier" p:trustedDomains="${hostnames.trusted}">-->
-	<!--</bean>-->
+	<!--<bean id="hostnameVerifier" class="org.esco.portlet.flashinfo.dao.util.EscoHostnameVerifier" p:trustedDomains="${hostnames.trusted}" />-->
 
 	<!-- based on org.apache.http.impl.client.HttpClients.createSystem -->
 	<bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder"

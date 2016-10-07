@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet.dao;
+package org.esco.portlet.flashinfo.service.bean;
 
 import javax.portlet.PortletRequest;
 
-import java.util.List;
+/**
+ * Created by jgribonvald on 15/09/16.
+ */
+public interface IFlashUrlBuilder {
 
-public interface IUserResource {
-
-	List<String> getUserInfo(final PortletRequest request, final String attributeName);
+    String transform(final PortletRequest request, final String url);
 }

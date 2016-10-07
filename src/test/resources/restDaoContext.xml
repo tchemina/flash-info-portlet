@@ -36,9 +36,9 @@
 	</bean>
 
 
-	<bean id="flashInfoResourceMock" class="org.esco.portlet.dao.impl.MockFlashInfoResourceImpl" />
-	<bean id="flashInfoResourceGson" class="org.esco.portlet.dao.impl.FlashInfoResourceGsonImpl" />
-	<bean id="flashInfoResourceJackson" class="org.esco.portlet.dao.impl.FlashInfoResourceJacksonImpl">
+	<bean id="flashInfoResourceMock" class="org.esco.portlet.flashinfo.dao.impl.MockFlashInfoResourceImpl" />
+	<bean id="flashInfoResourceGson" class="org.esco.portlet.flashinfo.dao.impl.FlashInfoResourceGsonImpl" />
+	<bean id="flashInfoResourceJackson" class="org.esco.portlet.flashinfo.dao.impl.FlashInfoResourceJacksonImpl">
 		<property name="restTemplate" ref="restTemplate" />
 	</bean>
 
@@ -52,21 +52,21 @@
 		</property>
 	</bean>
 
-	<bean id="hostnameVerifier" class="org.esco.portlet.dao.util.EscoHostnameVerifier">
-		<property name="trustedDomains">
-			<set>
-				<value>test.reciacas.fr</value>
-				<value>test-lycee.reciaent.fr</value>
-				<value>test-cfa.reciaent.fr</value>
-				<value>test.reciaclg.fr</value>
-			</set>
-		</property>
-	</bean>
+	<!--<bean id="hostnameVerifier" class="org.esco.portlet.flashinfo.dao.util.EscoHostnameVerifier">-->
+		<!--<property name="trustedDomains">-->
+			<!--<set>-->
+				<!--<value>test.reciacas.fr</value>-->
+				<!--<value>test-lycee.reciaent.fr</value>-->
+				<!--<value>test-cfa.reciaent.fr</value>-->
+				<!--<value>test.reciaclg.fr</value>-->
+			<!--</set>-->
+		<!--</property>-->
+	<!--</bean>-->
 
 	<!-- based on org.apache.http.impl.client.HttpClients.createSystem -->
 	<bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder"
 				factory-method="create">
-		<property name="SSLHostnameVerifier" ref="hostnameVerifier" />
+		<!--<property name="SSLHostnameVerifier" ref="hostnameVerifier" />-->
 	</bean>
 
 	<bean name="httpClient" factory-bean="httpClientBuilder" factory-method="build" />
@@ -75,7 +75,8 @@
 		<constructor-arg>
 			<bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"
 						p:readTimeout="2000"
-						p:connectTimeout="1000">
+						p:connectTimeout="1000"
+						p:connectionRequestTimeout="1000">
 				<property name="httpClient" ref="httpClient" />
 			</bean>
 		</constructor-arg>

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet.dao.impl;
+package org.esco.portlet.flashinfo.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import org.esco.portlet.dao.IFlashInfoResource;
-import org.esco.portlet.model.FlashInfo;
+import org.esco.portlet.flashinfo.dao.IFlashInfoResource;
+import org.esco.portlet.flashinfo.model.FlashInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

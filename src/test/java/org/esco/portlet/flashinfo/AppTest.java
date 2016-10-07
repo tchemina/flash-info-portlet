@@ -13,14 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet.service.bean;
+package org.esco.portlet.flashinfo;
 
-import javax.portlet.PortletRequest;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 /**
- * Created by jgribonvald on 15/09/16.
+ * Unit test for simple App.
  */
-public interface IFlashUrlBuilder {
+public class AppTest
+    extends TestCase
+{
+    /**
+     * Create the test case
+     *
+     * @param testName name of the test case
+     */
+    public AppTest( String testName )
+    {
+        super( testName );
+    }
 
-    String transform(final PortletRequest request, final String url);
+    /**
+     * @return the suite of tests being tested
+     */
+    public static Test suite()
+    {
+        return new TestSuite( AppTest.class );
+    }
+
+    /**
+     * Rigourous Test :-)
+     */
+    public void testApp()
+    {
+        assertTrue( true );
+    }
 }

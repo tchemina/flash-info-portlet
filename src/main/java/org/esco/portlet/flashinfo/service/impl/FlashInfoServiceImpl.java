@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet.service.impl;
+package org.esco.portlet.flashinfo.service.impl;
 
 import javax.portlet.PortletRequest;
 
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import org.esco.portlet.dao.IFlashInfoResource;
-import org.esco.portlet.model.FlashInfo;
-import org.esco.portlet.service.IFlashInfoService;
-import org.esco.portlet.service.bean.IFlashUrlBuilder;
+import org.esco.portlet.flashinfo.dao.IFlashInfoResource;
+import org.esco.portlet.flashinfo.model.FlashInfo;
+import org.esco.portlet.flashinfo.service.IFlashInfoService;
+import org.esco.portlet.flashinfo.service.bean.IFlashUrlBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

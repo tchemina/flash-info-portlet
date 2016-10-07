@@ -58,7 +58,7 @@
    | Uncomment and change package to inspect log mesasges for specific
    | code 
    +-->
-  <logger name="org.esco.portlet" additivity="false" level="TRACE">
+  <logger name="org.esco.portlet.flashinfo" additivity="false" level="TRACE">
     <appender-ref ref="C"/>
   </logger>
 </configuration>

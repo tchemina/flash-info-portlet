@@ -35,17 +35,17 @@
 		<property name="location" value="classpath:configuration.properties" />
 	</bean>
 
-	<!--<context:component-scan base-package="org.esco.portlet.service" />-->
+	<!--<context:component-scan base-package="org.esco.portlet.flashinfo.service" />-->
 	<!--<context:annotation-config />-->
 
-	<bean id="userResourceMock" class="org.esco.portlet.dao.impl.MockUserResourceImpl" />
-	<bean id="flashInfoResourceMock" class="org.esco.portlet.dao.impl.MockFlashInfoResourceImpl" />
+	<bean id="userResourceMock" class="org.esco.portlet.flashinfo.dao.impl.MockUserResourceImpl" />
+	<bean id="flashInfoResourceMock" class="org.esco.portlet.flashinfo.dao.impl.MockFlashInfoResourceImpl" />
 
-  <bean id="flashUrlBuilder" class="org.esco.portlet.service.bean.FlashUrlBuilderImpl" >
+  <bean id="flashUrlBuilder" class="org.esco.portlet.flashinfo.service.bean.FlashUrlBuilderImpl" >
     <property name="userResource" ref="userResourceMock" />
   </bean>
 
-	<bean id="flashInfoService" class="org.esco.portlet.service.impl.FlashInfoServiceImpl">
+	<bean id="flashInfoService" class="org.esco.portlet.flashinfo.service.impl.FlashInfoServiceImpl">
 		<property name="flashInfoResource" ref="flashInfoResourceMock"/>
 		<property name="flashUrlBuilder" ref="flashUrlBuilder" />
 	</bean>

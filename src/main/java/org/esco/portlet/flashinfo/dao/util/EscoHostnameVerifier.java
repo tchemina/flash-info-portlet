@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet.dao.util;
+package org.esco.portlet.flashinfo.dao.util;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;

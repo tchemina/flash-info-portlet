@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet.model;
+package org.esco.portlet.flashinfo.model;
 
 import java.io.Serializable;
 

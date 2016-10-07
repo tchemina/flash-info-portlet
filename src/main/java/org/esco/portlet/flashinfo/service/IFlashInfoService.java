@@ -13,16 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet.dao;
+package org.esco.portlet.flashinfo.service;
+
+import javax.portlet.PortletRequest;
 
 import java.util.List;
 
-import org.esco.portlet.model.FlashInfo;
+import org.esco.portlet.flashinfo.model.FlashInfo;
 
 /**
- * Created by jgribonvald on 13/09/16.
+ * Created by jgribonvald on 14/09/16.
  */
-public interface IFlashInfoResource {
+public interface IFlashInfoService {
 
-    List<FlashInfo> retrieveInfos(final String flashUrl) ;
+    List<FlashInfo> retrieveFlashInfos(final PortletRequest request);
+
 }

@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet;
+package org.esco.portlet.flashinfo;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import org.esco.portlet.dao.IFlashInfoResource;
-import org.esco.portlet.model.FlashInfo;
+import org.esco.portlet.flashinfo.dao.IFlashInfoResource;
+import org.esco.portlet.flashinfo.model.FlashInfo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

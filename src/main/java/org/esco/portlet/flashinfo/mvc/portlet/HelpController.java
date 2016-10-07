@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.esco.portlet.mvc.portlet;
+package org.esco.portlet.flashinfo.mvc.portlet;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -27,33 +27,38 @@ import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 /**
- * EditController renders the editing interface and persists user selections
- * to the portlet's preferences.
+ * HelpController is a simple controller that displays the help interface
  */
 @Controller
-@RequestMapping("EDIT")
-public class EditController {
+@RequestMapping("HELP")
+public class HelpController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     
-    
+    /**
+     * Returns the help view.  The help view is a very simple JSP, so we don't
+     * both returning a model.
+     * 
+     * @param request
+     * @param response
+     * @return
+     */
     @RenderMapping
-    public ModelAndView showMainView(
-            final RenderRequest request, final RenderResponse response) {
-
-        final String viewName = "edit";        
+    public ModelAndView showHelpView(final RenderRequest request, final RenderResponse response) {
+        final String viewName = "help";
         final ModelAndView mav = new ModelAndView(viewName);
         
         if(log.isDebugEnabled()) {
-            log.debug("Using view name " + viewName + " for edit view");
+            log.debug("Using view name " + viewName + " for help view");
         }
 
         return mav;
-
     }
 
     @ActionMapping
-    public void editPreferences() {
+    public void doAction() {
+        // no-op action mapping to prevent accidental calls to this URL from
+        // crashing the portlet
     }
 
 }
