@@ -62,13 +62,13 @@
 		</property>
 	</bean>
 
-	<bean id="hostnameVerifier" class="org.esco.portlet.dao.util.EscoHostnameVerifier" p:trustedDomains="${hostnames.trusted}">
-	</bean>
+	<!--<bean id="hostnameVerifier" class="org.esco.portlet.dao.util.EscoHostnameVerifier" p:trustedDomains="${hostnames.trusted}">-->
+	<!--</bean>-->
 
 	<!-- based on org.apache.http.impl.client.HttpClients.createSystem -->
 	<bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder"
 				factory-method="create">
-		<property name="SSLHostnameVerifier" ref="hostnameVerifier" />
+		<!--<property name="SSLHostnameVerifier" ref="hostnameVerifier" />-->
 	</bean>
 
 	<bean name="httpClient" factory-bean="httpClientBuilder" factory-method="build" />
@@ -77,7 +77,8 @@
 		<constructor-arg>
 			<bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"
 						p:readTimeout="5000"
-						p:connectTimeout="5000" >
+						p:connectTimeout="5000"
+					  p:connectionRequestTimeout="5000">
 				<property name="httpClient" ref="httpClient" />
 			</bean>
 		</constructor-arg>
