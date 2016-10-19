@@ -31,7 +31,7 @@
     <property name="location" value="classpath:configuration.properties"/>
   </bean>
 
-  <context:component-scan base-package="org.esco.portlet.mvc.portlet" />
+  <context:component-scan base-package="org.esco.portlet.flashinfo.mvc.portlet" />
   <context:annotation-config/>
 
 <!--   <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping"> -->

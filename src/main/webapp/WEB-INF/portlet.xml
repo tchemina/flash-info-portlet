@@ -26,7 +26,7 @@
         <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
         <init-param>
             <name>contextConfigLocation</name>
-            <value>/WEB-INF/context/portlet/flash-info-portlet-portlet.xml</value>
+            <value>/WEB-INF/context/portlet/flash-info-portlet.xml</value>
         </init-param>
         <!-- This value is to 0 in dev, can set to cache at a positive value in seconds 
             for caching, or -1 to never expire cache -->
