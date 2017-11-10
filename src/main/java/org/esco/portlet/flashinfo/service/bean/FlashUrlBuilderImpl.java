@@ -15,19 +15,18 @@
  */
 package org.esco.portlet.flashinfo.service.bean;
 
-import javax.portlet.PortletRequest;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.esco.portlet.flashinfo.dao.IUserResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.portlet.PortletRequest;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by jgribonvald on 15/09/16.
@@ -56,7 +55,7 @@ public class FlashUrlBuilderImpl implements IFlashUrlBuilder {
                 if (values != null && !values.isEmpty()) {
                     rewroteUrl = rewroteUrl.replaceAll("\\{" + matcher.group(i) + "\\}", values.get(0));
                 } else {
-                    log.warn("No value was retrived from user info of '{}' on attribute '{}'", request.getUserPrincipal(), matcher.group(i));
+                    log.warn("No value was retrieved from user info of '{}' on attribute '{}'", request.getUserPrincipal(), matcher.group(i));
                 }
             }
         }
