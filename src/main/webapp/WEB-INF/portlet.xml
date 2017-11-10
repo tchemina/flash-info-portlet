@@ -66,20 +66,11 @@
 
             <preference>
                 <name>flashUrl</name>
-                <value>https://test-lycee.reciaent.fr/publisher/published/flash/{ESCOUAICourant}</value>
+                <value>https://test-lycee.reciaent.fr/publisher/published/flash/{ESCOSIRENCourant}</value>
             </preference>
         </portlet-preferences>
     </portlet>
-    <user-attribute>
-        <description>User Display Name</description>
-        <name>displayName</name>
-    </user-attribute>
-    
-    <user-attribute>
-        <description>User Email Address</description>
-        <name>mail</name>
-    </user-attribute>
-    
+
      <user-attribute>
       <description>User UAI</description>
         <name>ESCOUAI</name>
@@ -89,6 +80,10 @@
      <description>User current uai</description>
         <name>ESCOUAICourant</name>
     </user-attribute>
-    
+
+    <user-attribute>
+        <description>User current SIREN</description>
+        <name>ESCOSIRENCourant</name>
+    </user-attribute>
 
 </portlet-app>
