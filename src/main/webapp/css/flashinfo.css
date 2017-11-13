@@ -76,7 +76,7 @@
 .flashInfoPortlet .carousel-caption>h3 {
     white-space: nowrap;
     font-weight: bold;
-    font-size: calc(1em + 0.8vw);
+    font-size: calc(1em - -0.8vw);
     text-overflow:ellipsis;
     overflow: hidden;
 }
