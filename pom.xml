@@ -93,6 +93,7 @@
     <mockito.version>1.10.19</mockito.version>
     <jackson.version>2.8.1</jackson.version>
     <ehcache.version>2.10.2</ehcache.version>
+    <uportal-libs.version>5.1.0</uportal-libs.version>
 
     <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
     <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
@@ -185,6 +186,39 @@
           <exclusion>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+       <!-- Provides the PortalPropertySourcesPlaceholderConfigurer
+             that supports global.properties and Jasypt encryption-->
+      <dependency>
+        <groupId>org.jasig.portal</groupId>
+        <artifactId>uPortal-spring</artifactId>
+        <version>${uportal-libs.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.jasig.portal</groupId>
+            <artifactId>uPortal-api-internal</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.jasig.portal</groupId>
+            <artifactId>uPortal-security-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.jasig.portal</groupId>
+            <artifactId>uPortal-security-mvc</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.jasig.portal</groupId>
+            <artifactId>uPortal-tools</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>net.oauth.core</groupId>
+            <artifactId>oauth</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -290,7 +324,10 @@
       <groupId>org.jasig.resourceserver</groupId>
       <artifactId>resource-server-utils</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.jasig.portal</groupId>
+      <artifactId>uPortal-spring</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
