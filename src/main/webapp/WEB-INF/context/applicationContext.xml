@@ -26,16 +26,6 @@
   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
   http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-	<!-- This is the root Spring WebApplicationContext. Place in this context 
-		the service, dao, and utility-level beans the web tier will access. NOTE: 
-		If you have multiple portlets in portlet.xml, you can move beans from the 
-		web-tier Spring WebApplicationContext to the root context to avoid having 
-		the bean definitions duplicated. -->
-
-	<bean
-			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:configuration.properties" />
-	</bean>
 	<!--
     | Supports encrypted properties within the location(s) listed in this
     | bean.  The password is the environment variable "UP_JASYPT_KEY"
