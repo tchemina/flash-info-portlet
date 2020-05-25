@@ -66,7 +66,7 @@
 
             <preference>
                 <name>flashUrl</name>
-                <value>https://test-lycee.reciaent.fr/publisher/published/flash/{ESCOSIRENCourant}</value>
+		<value>https://entnew.univ-lr.fr/uPortal/media/testCarrousel.json</value>
             </preference>
         </portlet-preferences>
     </portlet>
