@@ -44,9 +44,10 @@ public class MockFlashInfoResourceImpl implements IFlashInfoResource {
             final String imgL = "https//my.domain.com/images/test_" + i + ".png";
             final String title = "un titre " + i;
             final String text = "un text " + i;
+            final String kmt = "En savoir plus" + i;
             final String kml = "https//my.domain.com/test_" + i;
             final String alt = title;
-            final FlashInfo info = new FlashInfo(imgL, title, text, kml, alt);
+            final FlashInfo info = new FlashInfo(imgL, title, text, kmt, kml, alt);
             flL.add(info);
         }
         return flL;

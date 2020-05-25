@@ -26,6 +26,7 @@ public class FlashInfo implements Serializable {
 	private String imgLink;
 	private String title;
 	private String text;
+	private String knowMoreText;
 	private String knowMoreLink;
 	private String imgAlt;
 	private Set<Rubrique> rubriques;
@@ -36,20 +37,22 @@ public class FlashInfo implements Serializable {
 
 	@JsonCreator
 	public FlashInfo(@JsonProperty(value = "mediaUrl", required = true) String imgLink, @JsonProperty(value = "title", required = true) String title,
-					 @JsonProperty(value = "summary", required = true) String text, @JsonProperty(value = "link", required = true) String knowMoreLink,
-					 @JsonProperty("rubriques") Set<Rubrique> rubriques) {
+					 @JsonProperty(value = "summary", required = true) String text, @JsonProperty(value = "knowMoreText", required = true) String knowMoreText,
+					 @JsonProperty(value = "link", required = true) String knowMoreLink, @JsonProperty("rubriques") Set<Rubrique> rubriques) {
 		this.imgLink = imgLink;
 		this.title = title;
 		this.text = text;
+		this.knowMoreText = knowMoreText;
 		this.knowMoreLink = knowMoreLink;
 		this.rubriques = rubriques;
 	}
 
-	public FlashInfo(String imgL, String title, String text, String kmL, String alt){
+	public FlashInfo(String imgL, String title, String text, String kmT, String kmL, String alt){
 		super();
 		this.imgLink = imgL;
 		this.title = title;
 		this.text = text;
+		this.knowMoreText = kmT;
 		this.knowMoreLink = kmL;
 		this.imgAlt = alt;
 	}
@@ -76,6 +79,14 @@ public class FlashInfo implements Serializable {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public String getKnowMoreText() {
+		return knowMoreText;
+	}
+
+	public void setKnowMoreText(String knowMoreText) {
+		this.knowMoreText = knowMoreText;
 	}
 
 	public String getKnowMoreLink() {
@@ -108,6 +119,7 @@ public class FlashInfo implements Serializable {
 				"imgLink='" + imgLink + '\'' +
 				", title='" + title + '\'' +
 				", text='" + text + '\'' +
+				", knowMoreText='" + knowMoreText + '\'' +
 				", knowMoreLink='" + knowMoreLink + '\'' +
 				", imgAlt='" + imgAlt + '\'' +
 				", rubriques='" + rubriques.toString() + '\'' +

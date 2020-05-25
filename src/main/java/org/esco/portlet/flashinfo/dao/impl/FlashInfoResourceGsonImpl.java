@@ -57,15 +57,17 @@ public class FlashInfoResourceGsonImpl implements IFlashInfoResource {
                 final JsonElement jeMediaUrl = dataset.get("mediaUrl");
                 final JsonElement jeTitle = dataset.get("title");
                 final JsonElement jeSummary = dataset.get("summary");
+                final JsonElement jeText = dataset.get("knowMoreText");
                 final JsonElement jeLink = dataset.get("link");
                 // testing if all goes well
                 if (jeMediaUrl != null && jeTitle != null && jeSummary != null && jeLink != null) {
                     final String mediaUrl = jeMediaUrl.getAsString();
                     final String title = jeTitle.getAsString();
                     final String summary = jeSummary.getAsString();
+                    final String text = jeText.getAsString();
                     final String link = jeLink.getAsString();
                     final String alt = title;
-                    final FlashInfo info = new FlashInfo(mediaUrl, title, summary, link, alt);
+                    final FlashInfo info = new FlashInfo(mediaUrl, title, summary, text, link, alt);
                     flL.add(info);
                 } else {
                     log.warn("Problems on reading json element, needed attributes aren't found, check json source ! \nJsonElement is {}", elm.toString());
