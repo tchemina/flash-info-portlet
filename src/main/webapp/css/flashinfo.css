@@ -186,3 +186,32 @@
         -webkit-line-clamp: 3;
     }
 }
+
+.flashInfoPortlet .carousel-control {
+	width: 2em;
+}
+
+.carousel-know-more-btn .btn-default {
+        background-color: #FFE200;
+        padding: 5px 10px;
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+	position: absolute;
+	right: 25px;
+}
+
+.carousel-know-more-btn .btn-default:hover {
+        background-color: #fff180;
+}
+
+.carousel-indicators>li {
+        background: #FFE200;
+	border: 0px;
+}
+.carousel-indicators>li.active {
+        background: #FFE200;
+        background-color: #FFE200 !important;
+	border: 1px;
+}
+

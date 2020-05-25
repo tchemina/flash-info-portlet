@@ -60,8 +60,9 @@
 						<div class="carousel-caption">
 							<h3 class="carousel-text${loop.index}">${entry.title}</h3>
 							<p class="carousel-text${loop.index}">${entry.text}</p>
-							<a href="${entry.knowMoreLink}" target="_blank"> <span class="knowMoreText">${entry.knowMoreText} </span>
-							</a>
+							<div class="carousel-know-more-btn"> 
+        							<a href="${entry.knowMoreLink}"  target="_blank"><button class="btn btn-default">${entry.knowMoreText}</button></a> 
+							</div>
 						</div>
 					</div>
 				</c:forEach>
