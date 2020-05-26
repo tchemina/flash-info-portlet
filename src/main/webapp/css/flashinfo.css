@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-.flashInfoPortlet .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+.flashInfoPortlet .carousel-image>img, .carousel-inner>.item>a>img {
     margin: 0px;
     padding: 0px;
     min-height: 120px;
-}
-.flashInfoPortlet .carousel-control {
-    width:3em;
+    width:50%;
 }
 .flashInfoPortlet .carousel-caption {
     z-index: 0;
-    padding: 0em 4em 0em 4em;
+    padding: 0em 4em 2em 4em;
     text-align: left;
     top: 0;
     right: 0;
@@ -54,9 +52,9 @@
     line-height: 1.4em;
     display: -webkit-box;
     /* height = line-height * font-size * nb_lines */
-    height:7em;
+    height:80%;
     -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
+    /*-webkit-box-orient: vertical;*/
     overflow: hidden;
     text-overflow: ellipsis;
     /* for old browsers */
@@ -73,12 +71,14 @@
     hyphens: auto;
 }
 
-.flashInfoPortlet .carousel-caption>h3 {
+.flashInfoPortlet .carousel-title>h3 {
     white-space: nowrap;
     font-weight: bold;
     font-size: calc(1em - -0.8vw);
     text-overflow:ellipsis;
     overflow: hidden;
+    text-align: center;
+    height:33px;
 }
 
 .flashInfoPortlet .carousel-caption .knowMoreText {
@@ -110,16 +110,19 @@
     background-color: black;
 }
 
-@media (min-width : 1024px) {
+/*
+  @media (min-width : 1024px) {
     .flashInfoPortlet .modal-dialog {
         min-width: 80%;
         max-width: 1024px;
     }
 }
+*/
 /* Extra small devices (phones, less than 768px) */
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
+/*
 @media (max-width : 480px){
     .flashInfoPortlet .carousel-caption>p{
         display:none;
@@ -127,7 +130,6 @@
 }
 @media (min-width : 481px) and (max-width : 560px) {
     .flashInfoPortlet .carousel-caption>p{
-        /* height = line-height * font-size * nb_lines */
         height:2.8em;
         -webkit-line-clamp: 2;
     }
@@ -140,7 +142,6 @@
 }
 @media (min-width : 560px) and (max-width : 768px){
     .flashInfoPortlet .carousel-caption>p{
-        /* height = line-height * font-size * nb_lines */
         height:4.2em;
         -webkit-line-clamp: 3;
     }
@@ -151,7 +152,7 @@
         width: 100%;
         height:100%;
     }
-    .flashInfoPortlet .carousel-inner>.item>img, .flashInfoPortlet .carousel-inner>.item>a>img {
+    .flashInfoPortlet .carousel-image>img, .flashInfoPortlet .carousel-inner>.item>a>img {
         opacity: 0.2;
         width: 100%;
         max-height: 240px;
@@ -159,14 +160,27 @@
     }
 }
 @media ( max-width : 992px) and (min-width: 769px) {
-    .flashInfoPortlet .carousel-caption > p {
-        /* height = line-height * font-size * nb_lines */
+    .flashInfoPortlet .flashInfoPortlet .carousel-caption > p {
         height: 7em;
         -webkit-line-clamp: 5;
 
     }
 }
+*/
+
+@media (min-width : 481px) and (max-width : 560px) {
+    .flashInfoPortlet .carousel-caption>p{
+        display:none;
+    }
+}
+
+.flashInfoPortlet .carousel-indicators {
+    right: 0;
+    left: auto;
+}
+
 /* splitting in 2 the view after 992px */
+    /*
 @media ( min-width : 993px) {
     .flashInfoPortlet .carousel-caption {
         width: 50%;
@@ -175,43 +189,63 @@
         right: 0;
         left: auto;
     }
-    .flashInfoPortlet .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    .flashInfoPortlet .carousel-image>img, .carousel-inner>.item>a>img {
         width: 50%;
     }
 }
+*/
 /* fix problem when 5 lines and the text take too much place it's placed in front of carousel-indicators and the knowMoreText */
+/*
 @media ( max-width : 1248px) and (min-width: 993px)  {
     .flashInfoPortlet .carousel-caption>p{
         height:4.2em;
         -webkit-line-clamp: 3;
     }
 }
-
+*/
 .flashInfoPortlet .carousel-control {
-	width: 2em;
+	width: 5%;
 }
-
-.carousel-know-more-btn .btn-default {
-        background-color: #FFE200;
+/*
+.flashInfoPortlet .carousel-know-more-btn>a>button {
+	bottom:40px;
+}
+i*/
+.flashInfoPortlet .carousel-know-more-btn .btn-default {
+        background-color: #FFDD00;
         padding: 5px 10px;
         color: black;
         font-weight: bold;
         text-decoration: none;
-	position: absolute;
-	right: 25px;
+	/*position: absolute;*/
+	float: right;
 }
 
-.carousel-know-more-btn .btn-default:hover {
+.flashInfoPortlet .carousel-know-more-btn .btn-default:hover {
         background-color: #fff180;
 }
 
-.carousel-indicators>li {
-        background: #FFE200;
+.flashInfoPortlet .carousel-indicators>li {
+        background: #FFDD00;
 	border: 0px;
 }
-.carousel-indicators>li.active {
-        background: #FFE200;
-        background-color: #FFE200 !important;
+.flashInfoPortlet .carousel-indicators>li.active {
+        background: #FFDD00;
+        background-color: #FFDD00 !important;
 	border: 1px;
 }
 
+.flashInfoPortlet .carousel-image>img, .carousel-inner>.item>a>img {
+	margin-left: 10% !important;
+	padding-bottom: 10px;
+	width: 98%;
+}
+
+.flashInfoPortlet .carousel-image {
+	width:50%;
+	text-align: center;
+        vertical-align: middle;
+}
+.flashInfoPortlet .carousel-boby {
+	position:relative;
+}

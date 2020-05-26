@@ -55,13 +55,19 @@
 					<!-- Wrapper for slides first entry active-->
 					<c:set var="isactive" scope="page" ><c:if test="${loop.first}">active</c:if></c:set>
 					<div class="item ${isactive}">
-						<img class='carousel-image${loop.index}' src="${entry.imgLink}"
-							 alt="${(not empty entry.imgAlt) ? entry.imgAlt : entry.title}">
-						<div class="carousel-caption">
+						<div class="carousel-title">
 							<h3 class="carousel-text${loop.index}">${entry.title}</h3>
-							<p class="carousel-text${loop.index}">${entry.text}</p>
-							<div class="carousel-know-more-btn"> 
-        							<a href="${entry.knowMoreLink}"  target="_blank"><button class="btn btn-default">${entry.knowMoreText}</button></a> 
+						</div>
+						<div class="carousel-boby">
+							<div class="carousel-image">
+								<img class='carousel-image${loop.index}' src="${entry.imgLink}"
+								 	alt="${(not empty entry.imgAlt) ? entry.imgAlt : entry.title}">
+							</div>
+							<div class="carousel-caption">
+								<p class="carousel-text${loop.index}">${entry.text}</p>
+								<div class="carousel-know-more-btn"> 
+        								<a href="${entry.knowMoreLink}"  target="_blank"><button class="btn btn-default">${entry.knowMoreText}</button></a> 
+								</div>
 							</div>
 						</div>
 					</div>
