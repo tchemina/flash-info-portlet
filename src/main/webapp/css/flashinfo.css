@@ -21,7 +21,7 @@
 }
 .flashInfoPortlet .carousel-caption {
     z-index: 0;
-    padding: 0em 4em 2em 4em;
+    padding: 0em 4em 3em 4em;
     text-align: left;
     top: 0;
     right: 0;
@@ -47,6 +47,7 @@
     max-height: 100%;
     text-decoration: none;
     margin: 0 auto;
+    margin-bottom:10px;
     /** Part to "ellipsise" the text */
     font-size: 1em;
     line-height: 1.4em;
@@ -93,15 +94,14 @@
 .flashInfoPortlet .item.ab-dark .carousel-caption .knowMoreText,
 .flashInfoPortlet .ab-dark a .glyphicon,
 .flashInfoPortlet .ab-dark a  {
-    color:white;
+    color:#FFDD00;
 }
-
 .flashInfoPortlet .item.ab-light .carousel-caption > h3,
 .flashInfoPortlet .item.ab-light .carousel-caption > p,
 .flashInfoPortlet .item.ab-light .carousel-caption .knowMoreText,
 .flashInfoPortlet .ab-light a .glyphicon,
 .flashInfoPortlet .ab-light a  {
-    color:black;
+    color: black;
 }
 .flashInfoPortlet .ab-light .carousel-indicators > li {
     border-color: black;
@@ -110,6 +110,10 @@
     background-color: black;
 }
 
+.flashInfoPortlet .carousel-control .glyphicon,
+.flashInfoPortlet .ab-light a .glyphicon {
+    color: #FFDD00;
+}
 /*
   @media (min-width : 1024px) {
     .flashInfoPortlet .modal-dialog {
