@@ -38,7 +38,7 @@ flashInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) 
                         dark:       "ab-dark"
                     }
                 };
-                $.adaptiveBackground.run(defaults);
+                //$.adaptiveBackground.run(defaults);
 
                 // évènement de fin de recherche de couleur dominante d'une image
                 $(namespace + ' #myCarousel_' + portletId + " .item img").on('ab-color-found', function(ev,payload) {

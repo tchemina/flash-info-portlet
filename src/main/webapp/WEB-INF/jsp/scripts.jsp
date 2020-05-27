@@ -38,7 +38,7 @@
 	 * Use an anonymous function to initialize all JavaScript for this portlet.
 	 */
 	(function($, namespace, portletId, openKnownMoreInModal) {
-		adaptiveBackgroundApp.init($);
+		//adaptiveBackgroundApp.init($);
 		flashInfoPortlet.init($, namespace, portletId, openKnownMoreInModal);
 	})(${n}.jQuery, '#flashInfoPortlet_${n}', '${n}', ${openKnownMoreInModal});
 
